@@ -1,0 +1,91 @@
+-- drop database empresa --
+
+CREATE DATABASE if not exists empresa;
+use empresa;
+
+
+CREATE TABLE IF NOT EXISTS LOCALIDADES (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    LOCALIDAD VARCHAR(80),
+    ACTIVO INT
+);
+
+CREATE TABLE IF NOT EXISTS DEPARTAMENTOS (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    DENOMINACION VARCHAR(80),
+    LOCALIDAD_ID INT NOT NULL,
+    CONSTRAINT FK_LOCALIDADES_DEPARTAMENTOS FOREIGN KEY (LOCALIDAD_ID) REFERENCES LOCALIDADES(ID)
+);
+
+CREATE TABLE IF NOT EXISTS PUESTOS (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    PUESTO VARCHAR(80),
+    ACTIVO INT
+);
+
+CREATE TABLE IF NOT EXISTS EMPLEADOS (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    APELLIDO VARCHAR(80),
+    NOMBRES VARCHAR(80),
+    EDAD INT,
+    FECHAALTA DATE,
+    SUELDO DOUBLE,
+    COMISION DOUBLE,
+    DEPARTAMENTO_ID INT,
+    PUESTO_ID INT,
+    CONSTRAINT FK_EMPLEADOS_DEPARTAMENTOS FOREIGN KEY (DEPARTAMENTO_ID) REFERENCES DEPARTAMENTOS(ID),
+    CONSTRAINT FK_PUESTOS_EMPLEADOS FOREIGN KEY (PUESTO_ID) REFERENCES PUESTOS(ID)
+);
+
+INSERT INTO LOCALIDADES (LOCALIDAD, ACTIVO) VALUES
+('Buenos Aires', 1),
+('Córdoba', 1),
+('Carlos Paz', 1),
+('Mendoza', 1),
+('Tucumán', 1),
+('La Plata', 1),
+('Mar del Plata', 1),
+('Salta', 1),
+('Carlos Paz', 1),
+('Neuquén', 1);
+
+INSERT INTO DEPARTAMENTOS (DENOMINACION, LOCALIDAD_ID) VALUES
+('Centro', 1),
+('Norte', 2),
+('Sur', 3),
+('Este', 4),
+('Soporte', 5),
+('Zona Oeste', 6),
+('Zona Norte', 7),
+('Centro Sur', 8),
+('San Martín', 9),
+('Zona Patagónica', 10);
+
+INSERT INTO PUESTOS (PUESTO, ACTIVO) VALUES
+('Gerente', 1),
+('Vendedor', 1),
+('Asistente Administrativo', 1),
+('Soporte', 1),
+('Recepcionista', 1),
+('Analista', 1),
+('Director', 1),
+('Secretario', 1),
+('Contador', 1),
+('Supervisor', 1);
+
+INSERT INTO EMPLEADOS (APELLIDO, NOMBRES, EDAD, FECHAALTA, SUELDO, COMISION, DEPARTAMENTO_ID, PUESTO_ID) VALUES
+('Pérez', 'Juan', 35, '2023-01-15', 35000.00, 5000.00, 2, 1),
+('González', 'María', 28, '2022-09-10', 28000.00, 4000.00, 2, 2),
+('López', 'Carlos', 45, '2020-03-22', 10000.00, 10000.00, 2, 3),
+('Martínez', 'Lucía', 30, '2021-06-11', 40000.00, 7000.00, 2, 4),
+('Rodríguez', 'Antonio', 38, '2022-12-05', 38000.00, 6500.00, 2, 5),
+('Fernández', 'Ana', 25, '2023-02-17', 12999.00, 3000.00, 2, 6),
+('Garcia', 'Luis', 40, '2019-10-08', 11500.00, 9000.00, 7, 7),
+('Lopez', 'Elena', 50, '2018-07-03', 60000.00, 12000.00, 5, 8),
+('Martínez', 'José', 29, '2022-04-23', 37000.00, 5500.00, 3, 9),
+('Sánchez', 'Marta', 32, '2021-11-14', 43000.00, 8000.00, 10, 10);
+
+
+
+
+

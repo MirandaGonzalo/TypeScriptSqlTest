@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  mariadb:
+    image: mariadb:10.5
+    container_name: mariadb-test
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: empresa
+    ports:
+      - "3306:3306"
