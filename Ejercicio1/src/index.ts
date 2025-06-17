@@ -2,7 +2,6 @@ import promptSync from 'prompt-sync';
 const { Alumno } = require('./models/alumno');
 
 // 1. Crear un algoritmo que muestre los números impares entre el 0 y el 100. 
-/*
 function generarNumeros(min = 0, max = 100): number[]{
     let numeros: number[] = [];
     for (let i = min; i <= max; i++){
@@ -63,7 +62,6 @@ console.log(resumenSueldos);
 // 3. Plantear una clase llamada Alumno y definir como atributos su nombre y su edad. 
 // En el constructor realizar el ingreso de datos. Definir otros dos métodos para imprimir 
 // los datos ingresados y un mensaje si es mayor o no de edad (edad >= 18)
-*/
 const alumno1 = new Alumno();
 
 console.log(alumno1.getData());
